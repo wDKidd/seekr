@@ -17,6 +17,33 @@ var SearchInput = React.createClass({
   }
 });
 
+var Pagination = React.createClass({
+  getInitialState: function() {
+    return {
+        page: this.props.page,
+      }
+  },
+  handlePagination: function(e) {
+    var page = this.props.page;
+    if (e.target.id === "next") {
+      page = this.props.page++;
+      console.log('next');
+    }
+    if (e.target.id === "prev" && page > 1) {
+      page = this.props.page--;
+    }
+    this.search();
+  },
+  render: function(){
+    return(
+    <div className={'inner one-third center'}>
+      <button onClick={this.handlePagination} page={this.props.page} id={'prev'} className={'half pagination'} type="button" name="button">Prev</button>
+      <button onClick={this.handlePagination} page={this.props.page} id={'next'} className={'half pagination'} type="button" name="button">Next</button>
+    </div>
+    );
+  }
+});
+
 var Gallery = React.createClass({
   getInitialState: function() {
     return {photos: this.props.photos}
@@ -85,6 +112,11 @@ var FlickrSearch = React.createClass({
         {!this.state.photos.length &&
           <p>No photos to display</p>}
 
+        {/*show pagination buttons if images*/}
+        {!!this.state.photos.length && <div className={'pagination-component full'}>
+          <Pagination page={this.state.page}/>
+        </div>
+      }
       </div>
 
     );
