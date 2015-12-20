@@ -47,7 +47,7 @@ var FlickrSearch = React.createClass({
     return {
         base: 'https://api.flickr.com/services/rest/?api_key=1af4a5a385a5000653f81f6eefd7853f&format=rest&format=json&nojsoncallback=1',
         page: 1,
-        resultsPerPage: 2,
+        resultsPerPage: 12,
         photos: []
       }
   },
@@ -67,7 +67,6 @@ var FlickrSearch = React.createClass({
         });
       } else {
         console.log(res);
-        console.log(this.state.base);
       }
     }.bind(this));
   },
@@ -84,7 +83,6 @@ var FlickrSearch = React.createClass({
 
     if (e.target.id === "next") {
       page = this.state.page++;
-      console.log('next');
     }
     if (e.target.id === "prev" && page > 1) {
       page = this.state.page--;
