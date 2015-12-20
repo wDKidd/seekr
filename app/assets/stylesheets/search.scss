@@ -1,10 +1,54 @@
-// Place all the styles related to the search controller here.
+// Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 body{
   margin: 0;
   background-color: #000;
   background-image: url('home-bg.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.search-component{
+  width: 33.33%;
+  margin: 0 auto;
+}
+
+.search-component::after{
+  content: ' ';
+  clear: both;
+  display: table;
+}
+
+// search component
+.search-component input,
+.search-component button{
+  float: left;
+}
+
+.search-component input{
+  width: 70%;
+}
+
+.search-component button{
+  width: 30%;
+}
+
+@media (max-width:970px) {
+  .search-component{
+    width: 40%;
+  }
+}
+
+@media (max-width:717px) {
+  .search-component{
+    width: 60%;
+  }
+}
+
+@media (max-width:506px) {
+  .search-component{
+    width: 80%;
+  }
 }

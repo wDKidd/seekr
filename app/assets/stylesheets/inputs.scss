@@ -1,0 +1,46 @@
+// variables
+$primaryButtonColor: #128fdc;
+$paginationButtonColor: #17AB44;
+
+// inputs
+input,
+button{
+  font-size: 1.2rem;
+  border: 0px solid #E2E0E0;
+  margin: 6px 0;
+  padding: 10px 0;
+  text-indent: 10px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+button:focus{
+  outline: 0;
+}
+
+button.primary{
+  background-color: $primaryButtonColor;
+  color: #fff;
+}
+button.primary:focus{
+  background-color: darken($primaryButtonColor, 10%);
+}
+button.primary:hover{
+  background-color: lighten($primaryButtonColor, 10%);
+}
+
+button.pagination{
+  background-color: $paginationButtonColor;
+  border: 1px solid transparent;
+  color: #fff;
+  margin: 0; 
+}
+
+button.pagination:focus{
+  background-color: darken($paginationButtonColor, 10%);
+}
+button.pagination:hover{
+  background-color: lighten($paginationButtonColor, 10%);
+}
