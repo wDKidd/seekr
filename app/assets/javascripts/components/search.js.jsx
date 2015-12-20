@@ -6,10 +6,14 @@
 // it is not read-only
 var SearchInput = React.createClass({
   getInitialState: function() {
-    return {value: ''};
+    return {
+      value: ''
+    };
   },
   handleChange: function(event) {
-    this.setState({value: event.target.value});
+    this.setState({
+      value: event.target.value
+    });
   },
   render: function() {
     var value = this.state.value;

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require fancybox.min.js
 //= require turbolinks
 //= require react
 //= require react_ujs
