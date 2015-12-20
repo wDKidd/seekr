@@ -17,33 +17,6 @@ var SearchInput = React.createClass({
   }
 });
 
-var Pagination = React.createClass({
-  getInitialState: function() {
-    return {
-        page: this.props.page,
-      }
-  },
-  handlePagination: function(e) {
-    var page = this.props.page;
-    if (e.target.id === "next") {
-      page = this.props.page++;
-      console.log('next');
-    }
-    if (e.target.id === "prev" && page > 1) {
-      page = this.props.page--;
-    }
-    this.search();
-  },
-  render: function(){
-    return(
-    <div className={'inner one-third center'}>
-      <button onClick={this.handlePagination} page={this.props.page} id={'prev'} className={'half pagination'} type="button" name="button">Prev</button>
-      <button onClick={this.handlePagination} page={this.props.page} id={'next'} className={'half pagination'} type="button" name="button">Next</button>
-    </div>
-    );
-  }
-});
-
 var Gallery = React.createClass({
   getInitialState: function() {
     return {photos: this.props.photos}
@@ -70,13 +43,20 @@ var FlickrSearch = React.createClass({
     return {
         base: 'https://api.flickr.com/services/rest/?api_key=1af4a5a385a5000653f81f6eefd7853f&format=rest&format=json&nojsoncallback=1',
         page: 1,
-        resultsPerPage: 12,
+        resultsPerPage: 2,
         photos: []
       }
   },
   search: function() {
     var searchQuery = this.refs.search.getDOMNode().value;
-    $.get(this.state.base + '&method=flickr.photos.search&text=' + searchQuery + '&per_page=' + this.state.resultsPerPage + '&page=' + this.state.page, function(res) {
+    $.get(
+        this.state.base +
+        '&method=flickr.photos.search&text=' +
+        searchQuery + '&per_page=' +
+        this.state.resultsPerPage +
+        '&page=' +
+        this.state.page,
+      function(res) {
       if (res.stat === "ok") {
         this.setState({
           photos: res.photos.photo.map(this.getFlickrPhotoUrl)
@@ -93,6 +73,19 @@ var FlickrSearch = React.createClass({
   },
   getFlickrPhotoUrl: function(image) {
     return `https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`;;
+  },
+
+  handlePagination: function(e) {
+    var page = this.state.page;
+
+    if (e.target.id === "next") {
+      page = this.state.page++;
+      console.log('next');
+    }
+    if (e.target.id === "prev" && page > 1) {
+      page = this.state.page--;
+    }
+    this.search();
   },
   render: function() {
     return (
@@ -114,7 +107,10 @@ var FlickrSearch = React.createClass({
 
         {/*show pagination buttons if images*/}
         {!!this.state.photos.length && <div className={'pagination-component full'}>
-          <Pagination page={this.state.page}/>
+        <div className={'inner one-third center'}>
+          <button onClick={this.handlePagination} page={this.props.page} id={'prev'} className={'half pagination'} type="button" name="button">Prev</button>
+          <button onClick={this.handlePagination} page={this.props.page} id={'next'} className={'half pagination'} type="button" name="button">Next</button>
+        </div>
         </div>
       }
       </div>
