@@ -1,8 +1,0 @@
-== README
-
-Setup
-
-git clone https://github.com/wDKidd/seekr.git
-cd seekr
-bundle install
-rails server
