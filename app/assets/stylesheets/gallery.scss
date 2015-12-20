@@ -1,0 +1,30 @@
+.gallery {
+    max-width: 70%;
+    max-width: 70vw;
+    margin: 4rem auto 4rem;
+    line-height: 0;
+    -webkit-column-count: 4;
+    -webkit-column-gap:   0;
+    -moz-column-count:    4;
+    -moz-column-gap:      0;
+    column-count:         4;
+    column-gap:           0;
+}
+
+.gallery::before,
+.gallery::after{
+  content: ' ';
+  clear: both;
+  display: table;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery img:hover {
+  cursor: pointer;
+}
+.gallery img:focus {
+}
